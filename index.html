@@ -3,578 +3,616 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For My Chinnari ❤️</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: Georgia, "Times New Roman", serif;
-    background: linear-gradient(135deg, #fff0f5, #ffe0e9, #fff7f0);
-    color: #762342;
-    text-align: center;
-    min-height: 100vh;
-    overflow-x: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(135deg, #fff0f5, #ffe0e9, #fff7f0);
+  color: #762342;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 section {
-    display: none;
-    min-height: 100vh;
-    padding: 40px 18px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: none;
+  min-height: 100vh;
+  padding: 35px 18px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 section.active {
-    display: flex;
-    animation: fadeIn 0.8s ease;
+  display: flex;
+  animation: fadeIn .8s ease;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-h1 {
-    font-size: clamp(30px, 6vw, 46px);
-    margin: 20px 0;
-}
-
-h2 {
-    margin: 15px 0;
-}
-
-p {
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 650px;
-    margin: 12px auto;
-}
+h1 { font-size: clamp(30px, 6vw, 46px); margin: 20px 0; }
+h2 { margin: 15px 0; }
+p { font-size: 18px; line-height: 1.8; max-width: 650px; margin: 12px auto; }
 
 button {
-    background: #c2185b;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 26px;
-    font-size: 16px;
-    font-family: inherit;
-    cursor: pointer;
-    margin: 12px 5px;
-    transition: 0.3s;
+  background: #c2185b;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 26px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  margin: 12px 5px;
 }
 
-button:hover {
-    background: #8e1245;
-    transform: scale(1.04);
-}
+button:hover { background: #8e1245; }
 
 input, textarea {
-    width: min(90%, 400px);
-    padding: 15px;
-    border: 1px solid #e7a0b7;
-    border-radius: 12px;
-    font-size: 17px;
-    font-family: inherit;
-    margin: 15px;
-    outline-color: #c2185b;
-}
-
-textarea {
-    resize: vertical;
+  width: min(90%, 400px);
+  padding: 15px;
+  border: 1px solid #e7a0b7;
+  border-radius: 12px;
+  font-size: 17px;
+  font-family: inherit;
+  margin: 12px;
 }
 
 .roses {
-    font-size: clamp(38px, 8vw, 65px);
-    line-height: 1.5;
-    animation: bloom 2s infinite alternate;
+  font-size: clamp(38px, 8vw, 65px);
+  line-height: 1.5;
+  animation: bloom 2s infinite alternate;
 }
 
 @keyframes bloom {
-    from { transform: scale(0.95); }
-    to { transform: scale(1.06); }
+  from { transform: scale(.88); }
+  to { transform: scale(1.12); }
 }
 
-.subtitle {
-    font-size: 20px;
-    font-style: italic;
+/* BLOOMING HEARTS */
+.floating-heart {
+  position: fixed;
+  bottom: -60px;
+  z-index: 10;
+  pointer-events: none;
+  animation: rise 6s linear forwards;
 }
 
-.cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin: 25px 0;
+@keyframes rise {
+  0% { transform: translateY(0) scale(.5) rotate(0); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.5) rotate(35deg); opacity: 0; }
+}
+
+.cards, .photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 25px 0;
 }
 
 .card {
-    width: 145px;
-    min-height: 180px;
-    padding: 18px 10px;
-    background: linear-gradient(145deg, #ffb6cb, #fff5f8);
-    border: 2px solid #e8a0b6;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px #9d1c4420;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s;
+  width: 145px;
+  min-height: 175px;
+  padding: 18px 10px;
+  background: linear-gradient(145deg, #ffb6cb, #fff5f8);
+  border: 2px solid #e8a0b6;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px #9d1c4420;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.card:hover {
-    transform: translateY(-8px) rotate(-2deg);
-}
-
-.card .emoji {
-    font-size: 45px;
-}
-
-.card strong {
-    font-size: 27px;
-    margin: 10px;
-}
-
-.card p {
-    font-size: 14px;
-    margin: 0;
-}
+.card .emoji { font-size: 42px; }
+.card strong { font-size: 27px; margin: 10px; }
+.card p { font-size: 14px; margin: 0; }
 
 .message-box {
-    display: none;
-    width: min(95%, 600px);
-    background: #fff;
-    border: 1px solid #f1b4c7;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px #9d1c4415;
-    font-size: 18px;
-    line-height: 1.9;
-    margin: 10px auto 20px;
-    animation: fadeIn 0.5s ease;
-}
-
-.photos {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 25px 0;
+  display: none;
+  width: min(95%, 600px);
+  background: white;
+  border: 1px solid #f1b4c7;
+  padding: 25px;
+  border-radius: 20px;
+  font-size: 18px;
+  line-height: 1.9;
+  margin: 10px auto 20px;
+  white-space: pre-wrap;
 }
 
 .photo-frame {
-    width: min(280px, 85vw);
-    padding: 12px;
-    background: white;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px #9d1c4420;
+  width: min(280px, 85vw);
+  padding: 12px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px #9d1c4420;
 }
 
 .photo-frame img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .heart {
-    font-size: 35px;
-    color: #e91e63;
-    margin-top: 8px;
-    animation: heartbeat 1s infinite;
+  font-size: 35px;
+  color: #e91e63;
+  margin-top: 8px;
+  animation: heartbeat 1s infinite;
 }
 
 @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }
 
 .letter-box {
-    max-width: 650px;
-    width: 100%;
-    padding: 25px;
-    background: #fff;
-    border: 1px solid #f0b4c6;
-    border-radius: 20px;
-    line-height: 2;
-    box-shadow: 0 8px 25px #9d1c4415;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    font-size: 18px;
+  max-width: 650px;
+  width: 100%;
+  padding: 25px;
+  background: white;
+  border: 1px solid #f0b4c6;
+  border-radius: 20px;
+  line-height: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 18px;
 }
 
-.final-message {
-    color: #c2185b;
-    font-size: clamp(28px, 6vw, 43px);
-    margin: 20px 0;
-}
-
-.signature {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-.footer-heart {
-    font-size: 42px;
-    margin: 15px;
-}
+audio { width: min(95%, 400px); margin: 15px; }
+.error { color: #b00040; font-weight: bold; }
+.signature { font-size: 24px; font-weight: bold; margin-top: 15px; }
 
 @media (max-width: 480px) {
-    .card {
-        width: 125px;
-        min-height: 155px;
-    }
-
-    .photo-frame img {
-        height: 260px;
-    }
-
-    p {
-        font-size: 17px;
-    }
+  .card { width: 125px; min-height: 155px; }
+  .photo-frame img { height: 260px; }
+  p { font-size: 17px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SCREEN 1: ROSES OPENING -->
+<!-- SCREEN 1: BLOOMING LOVE -->
 <section id="screen1" class="active">
-    <div class="roses">
-        🌹🌹🌹<br>
-        🌹💗🌹
-    </div>
-
-    <h1>A Little World of Love</h1>
-
-    <p class="subtitle">
-        Made with love, just for you. ❤️
-    </p>
-
-    <p>Someone has a beautiful surprise waiting for you.</p>
-
-    <button onclick="showScreen(2)">
-        Open Your Surprise 💌
-    </button>
+  <div class="roses">🌹🌹🌹<br>❤️💗❤️</div>
+  <h1>A Little World of Love</h1>
+  <p>Every heart here is filled with love, just for you. ❤️</p>
+  <p>Someone special has prepared a surprise for you.</p>
+  <button onclick="showScreen(2)">Open Your Surprise 💌</button>
 </section>
 
-<!-- SCREEN 2: NICKNAME -->
+<!-- SCREEN 2: PASSWORD AND NAME -->
 <section id="screen2">
-    <div class="roses">💐🌹💐</div>
+  <div class="roses">💗🌹💗</div>
+  <h1>Welcome, My Dear ❤️</h1>
+  <p>Enter your password and your name to unlock your surprise.</p>
 
-    <h1>Hello, Chinnari! ❤️</h1>
+  <input id="password" type="password"
+         placeholder="Enter your password"
+         autocomplete="off">
 
-    <p>
-        Before you open your surprises,
-        tell me your sweet nickname.
-    </p>
+  <input id="nickname" type="text"
+         value="Janaki"
+         placeholder="Enter your name"
+         autocomplete="off">
 
-    <input
-        id="nickname"
-        type="text"
-        value="Chinnari"
-        placeholder="Enter your nickname"
-    >
-
-    <button onclick="startSurprise()">
-        Continue, My Dear 💗
-    </button>
+  <button onclick="unlockSurprise()">Unlock My Surprise ❤️</button>
+  <p id="loginError" class="error" role="alert"></p>
 </section>
 
-<!-- SCREEN 3: THREE SURPRISE CARDS -->
+<!-- SCREEN 3: THREE CARDS -->
 <section id="screen3">
-    <div class="roses">💌💕💌</div>
+  <div class="roses">💌💕💌</div>
+  <h1 id="welcome">My Dearest Janaki ❤️</h1>
+  <p>Three little cards, three pieces of my heart. Tap each one. 💗</p>
 
-    <h1 id="welcome">My Dearest Chinnari ❤️</h1>
-
-    <p>
-        Three little cards, three pieces of my heart.
-        Tap each one to discover your surprise.
-    </p>
-
-    <div class="cards">
-
-        <div class="card" onclick="openCard(1)">
-            <div class="emoji">💌</div>
-            <strong>1</strong>
-            <p>A little message for you</p>
-        </div>
-
-        <div class="card" onclick="openCard(2)">
-            <div class="emoji">💝</div>
-            <strong>2</strong>
-            <p>A little more love</p>
-        </div>
-
-        <div class="card" onclick="openCard(3)">
-            <div class="emoji">❤️</div>
-            <strong>3</strong>
-            <p>From my heart</p>
-        </div>
-
+  <div class="cards">
+    <div class="card" onclick="openCard(1)">
+      <div class="emoji">💌</div><strong>1</strong>
+      <p>A little message for you</p>
     </div>
+    <div class="card" onclick="openCard(2)">
+      <div class="emoji">💝</div><strong>2</strong>
+      <p>A little more love</p>
+    </div>
+    <div class="card" onclick="openCard(3)">
+      <div class="emoji">❤️</div><strong>3</strong>
+      <p>From my heart</p>
+    </div>
+  </div>
 
-    <div id="cardMessage" class="message-box"></div>
-
-    <button onclick="showScreen(4)">
-        Our Beautiful Memories 📸
-    </button>
+  <div id="cardMessage" class="message-box"></div>
+  <button onclick="showScreen(4)">Our Beautiful Memories 📸</button>
 </section>
 
-<!-- SCREEN 4: THREE PHOTOS -->
+<!-- SCREEN 4: PHOTOS -->
 <section id="screen4">
-    <div class="roses">🌹❤️🌹</div>
+  <div class="roses">🌹❤️🌹</div>
+  <h1>Our Beautiful Memories</h1>
+  <p>Every picture holds a memory. Every memory holds love. 🫶</p>
 
-    <h1>Our Beautiful Memories</h1>
-
-    <p>
-        Every picture holds a memory.
-        Every memory holds a little piece of my heart.
-    </p>
-
-    <div class="photos">
-
-        <div class="photo-frame">
-            <img src="photo1.jpg" alt="First memory of brother and sister">
-            <div class="heart">❤️</div>
-            <p>My favourite memory with you</p>
-        </div>
-
-        <div class="photo-frame">
-            <img src="photo2.jpg" alt="Second memory of brother and sister">
-            <div class="heart">❤️</div>
-            <p>My forever favourite person</p>
-        </div>
-
-        <div class="photo-frame">
-            <img src="photo3.jpg" alt="Third memory of brother and sister">
-            <div class="heart">❤️</div>
-            <p>Us, today and always</p>
-        </div>
-
+  <div class="photos">
+    <div class="photo-frame">
+      <img src="Order1 Image.jpeg" alt="First sister memory">
+      <div class="heart">❤️</div>
+      <p>My favourite memory with you</p>
     </div>
 
-    <p>
-        No matter how much we grow,
-        these memories will always be precious. 🫶
-    </p>
+    <div class="photo-frame">
+      <img src="Order1 Image.jpeg" alt="Second sister memory">
+      <div class="heart">❤️</div>
+      <p>My forever favourite person</p>
+    </div>
 
-    <button onclick="showScreen(5)">
-        A Letter From My Heart 💌
-    </button>
+    <div class="photo-frame">
+      <img src="Order1 Image.jpeg" alt="Third sister memory">
+      <div class="heart">❤️</div>
+      <p>Us, today and always</p>
+    </div>
+  </div>
+
+  <button onclick="showScreen(5)">A Letter From My Heart 💌</button>
 </section>
 
-<!-- SCREEN 5: PERSONAL LETTER -->
+<!-- SCREEN 5: SISTER BOND -->
 <section id="screen5">
-    <div class="roses">💗🌹💗</div>
+  <div class="roses">💗🌹💗</div>
+  <h1>Dear <span class="nameText">Janaki</span> ❤️</h1>
 
-    <h1>Dear Chinnari ❤️</h1>
+  <div class="letter-box" id="bondLetter">
+My dearest Janaki,
 
-    <div class="letter-box">
-        My dearest Chinnari,
+You are not just my sister.
+You are a beautiful part of my life
+and someone I will always care about.
 
-        You are not just my sister.
-        You are a beautiful part of my life
-        and someone I will always care about.
+We may fight, tease each other,
+and sometimes disagree,
+but my love for you will never change.
 
-        We may fight, tease each other,
-        and sometimes disagree,
-        but my love for you will never change.
+I wish you endless happiness,
+beautiful memories, and all the success
+your heart dreams of.
 
-        I wish you endless happiness,
-        beautiful memories, and all the success
-        your heart dreams of.
+Whenever you need me,
+remember that you have a brother
+who will always wish the best for you.
 
-        Whenever you need me,
-        remember that you have a brother
-        who will always wish the best for you.
+You will always be my Chinnari. ❤️
 
-        You will always be my Chinnari. ❤️
+With all my love,
+Koushik 🫶
+  </div>
 
-        With all my love,
-        Koushik 🫶
-    </div>
+  <h2>Write Your Special Words 💌</h2>
+  <textarea id="sisterWords" rows="4"
+    placeholder="Write a personal message here..."></textarea>
 
-    <h2 style="margin-top:25px;">
-        Add Your Own Special Words 💌
-    </h2>
-
-    <textarea
-        id="sisterWords"
-        rows="4"
-        placeholder="Write your own heartfelt words for Chinnari..."
-    ></textarea>
-
-    <button onclick="showFinal()">
-        One Last Surprise ❤️
-    </button>
+  <button onclick="showFinal()">One Last Surprise ❤️</button>
 </section>
 
-<!-- SCREEN 6: FINAL LOVE MESSAGE -->
+<!-- SCREEN 6: MUSIC AND FINAL SURPRISE -->
 <section id="screen6">
-    <div class="roses">
-        🌹🌹🌹<br>
-        🌹💗🌹
+  <div class="roses">🌹🌹🌹<br>🌹💗🌹</div>
+  <h1>A Song for <span class="nameText">Janaki</span> 🎵</h1>
+  <p>Play the song and let each surprise arrive with the music. ❤️</p>
+
+  <audio id="song" controls preload="metadata">
+    <source src="Order1 Audio.mpeg" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <p id="musicTime">00:00 / 03:00</p>
+  <p id="songStatus">Press play to begin your surprise. 💗</p>
+
+  <div id="timedSurprises" style="width:100%;display:grid;gap:20px;justify-items:center;">
+
+    <div id="m15" class="letter-box" hidden>
+      <h2>💌 A Little Message</h2>
+      Janaki, you are one of the precious people
+      who make life more beautiful just by being there.
+      Never forget how special you are. ❤️
     </div>
 
-    <div class="footer-heart">❤️</div>
-
-    <h1 id="finalTitle">For My Chinnari</h1>
-
-    <div id="finalLetter" class="letter-box"></div>
-
-    <div class="final-message">
-        Love You Forever ❤️
+    <div id="m40" class="letter-box" hidden>
+      <h2>📸 A Beautiful Memory</h2>
+      <div class="photo-frame">
+        <img src="Order1 Image.jpeg" alt="A special memory">
+      </div>
+      Side by side, heart to heart. 💕
     </div>
 
-    <div class="signature">
-        Your Annya, Koushik 🫶
+    <div id="m65" class="letter-box" hidden>
+      <h2>💗 Your Sister Bond</h2>
+      May you always have each other to laugh with,
+      cry with, and share your dreams with.
+      Sisters are part of our hearts forever. ❤️
     </div>
 
-    <p>
-        No matter where life takes us,
-        you will always be my precious sister.
-    </p>
+    <div id="m90" class="letter-box" hidden>
+      <h2>🎈 A Hidden Surprise</h2>
+      <button onclick="revealPhoto()">Tap for your surprise ❤️</button>
+      <div id="hiddenPhoto" hidden>
+        <div class="photo-frame">
+          <img src="Order1 Image.jpeg" alt="Hidden surprise">
+        </div>
+        A memory to treasure forever. 💗
+      </div>
+    </div>
 
-    <div class="roses">🌹💗🌹</div>
+    <div id="m120" class="letter-box" hidden>
+      <h2>💌 From the Heart</h2>
+      May you always support each other,
+      celebrate each other's happiness,
+      and make beautiful memories together.
+      Your bond is a gift to cherish forever. 🫶
+    </div>
 
-    <button onclick="closeSurprise()">
-        Close ❤️
-    </button>
+    <div id="m155" class="letter-box" hidden>
+      <h2>🌹 One Last Message</h2>
+      May your life be filled with happiness,
+      beautiful memories, and endless love.
+      You are loved more than words can say. ❤️
+    </div>
+
+    <div id="m180" class="letter-box" hidden>
+      <div class="roses">🌹❤️🌹</div>
+      <h1>Love You Forever</h1>
+      <p>Always and forever, <span class="nameText">Janaki</span>. 💗</p>
+      <p class="signature">Your Annya, Koushik 🫶</p>
+    </div>
+
+  </div>
+
+  <button onclick="showScreen(7)">Final Message ❤️</button>
+</section>
+
+<!-- SCREEN 7: CLOSE -->
+<section id="screen7">
+  <div class="roses">🌹❤️🌹</div>
+  <h1>Always & Forever</h1>
+  <h2>My Beautiful Sister 💗</h2>
+
+  <div class="letter-box" id="finalLetter"></div>
+
+  <div class="roses">❤️🌹❤️</div>
+  <p class="signature">Love You Forever — Your Annya, Koushik</p>
+  <button onclick="showScreen(1)">Close ❤️</button>
 </section>
 
 <script>
+/*
+  Demo password:
+  123456
+
+  This is a browser-side check, not secure encryption.
+  Unlimited retries: there is no attempt counter or lockout.
+*/
+
+const PASSWORD = "123456";
+let personName = "Janaki";
+
 const messages = {
-    1: `
-        My Chinnari ❤️
+  1: `My Chinnari ❤️
 
-        You are one of the most precious gifts in my life.
-        Your smile brings happiness, and your presence
-        makes our family more beautiful.
+You are one of the most precious gifts in my life.
+Your smile brings happiness, and your presence makes
+our family more beautiful.
 
-        I hope you always keep smiling.
-        You deserve all the happiness in the world.
+You deserve all the happiness in the world.
 
-        With love, Koushik 💗
-    `,
+With love, Koushik 💗`,
 
-    2: `
-        My Sweet Chinnari 💕
+  2: `My Sweet Chinnari 💕
 
-        We may fight, tease each other, and annoy each other,
-        but deep down, you will always be so special to me.
+We may fight, tease each other, and annoy each other,
+but you will always be so special to me.
 
-        No distance or busy day can change our bond.
-        You will always be my favourite sister.
+No distance or busy day can change our bond.
+You will always be my favourite sister.
 
-        Always yours, Koushik 🫶
-    `,
+Always yours, Koushik 🫶`,
 
-    3: `
-        Dear Chinnari ❤️
+  3: `Dear Chinnari ❤️
 
-        Whenever life feels difficult,
-        remember that you are loved more than you know.
+Whenever life feels difficult, remember that you are
+loved more than you know.
 
-        Keep dreaming, keep smiling, and never stop believing
-        in yourself. I will always wish for your happiness
-        and be proud of the person you become.
+Keep dreaming, keep smiling, and believe in yourself.
+I will always wish for your happiness.
 
-        Love you endlessly, Koushik 🌹
-    `
+Love you endlessly, Koushik 🌹`
 };
 
 function showScreen(number) {
-    document.querySelectorAll("section").forEach(section => {
-        section.classList.remove("active");
-    });
+  document.querySelectorAll("section").forEach(section => {
+    section.classList.remove("active");
+  });
 
-    document.getElementById("screen" + number)
-        .classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+  document.getElementById("screen" + number).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function startSurprise() {
-    const nickname = document.getElementById("nickname")
-        .value.trim();
+function unlockSurprise() {
+  const password = document.getElementById("password").value;
+  const enteredName = document.getElementById("nickname").value.trim();
+  const error = document.getElementById("loginError");
 
-    if (!nickname) {
-        alert("Please enter your nickname ❤️");
-        return;
-    }
+  if (password !== PASSWORD) {
+    error.textContent = "That password isn't correct. Please try again ❤️";
+    document.getElementById("password").value = "";
+    document.getElementById("password").focus();
+    return;
+  }
 
-    document.getElementById("welcome").textContent =
-        "My Dearest " + nickname + " ❤️";
+  if (!enteredName) {
+    error.textContent = "Please enter your name ❤️";
+    return;
+  }
 
-    showScreen(3);
+  // No limit on attempts. Name can be changed and entered again.
+  personName = enteredName;
+  error.textContent = "";
+
+  document.getElementById("welcome").textContent =
+    "My Dearest " + personName + " ❤️";
+
+  document.querySelectorAll(".nameText").forEach(element => {
+    element.textContent = personName;
+  });
+
+  document.getElementById("bondLetter").textContent =
+    `My dearest ${personName},
+
+You are not just my sister.
+You are a beautiful part of my life
+and someone I will always care about.
+
+We may fight, tease each other,
+and sometimes disagree,
+but my love for you will never change.
+
+I wish you endless happiness,
+beautiful memories, and all the success
+your heart dreams of.
+
+Whenever you need me,
+remember that you have a brother
+who will always wish the best for you.
+
+You will always be my Chinnari. ❤️
+
+With all my love,
+Koushik 🫶`;
+
+  showScreen(3);
+  bloomHearts();
 }
 
 function openCard(number) {
-    const nickname = document.getElementById("nickname")
-        .value.trim() || "Chinnari";
+  const box = document.getElementById("cardMessage");
+  box.style.display = "block";
 
-    const box = document.getElementById("cardMessage");
+  // textContent safely displays the message as text.
+  box.textContent = messages[number].replaceAll("Chinnari", personName);
 
-    box.style.display = "block";
-
-    box.innerHTML =
-        "<div class='heart'>❤️</div>" +
-        "<h2>Card " + number + "</h2>" +
-        "<p>" +
-        messages[number]
-            .replaceAll("Chinnari", nickname)
-            .replaceAll("\n", "<br>") +
-        "</p>";
-
-    box.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+  box.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function showFinal() {
-    const nickname = document.getElementById("nickname")
-        .value.trim() || "Chinnari";
+  const personalWords = document.getElementById("sisterWords").value.trim();
 
-    const personalWords = document.getElementById("sisterWords")
-        .value.trim();
+  document.getElementById("finalLetter").textContent =
+    personalWords ||
+    `My dearest ${personName}, ❤️
 
-    const defaultMessage =
-        "My dearest " + nickname + ", ❤️\n\n" +
-        "No matter how much time passes or how much life changes, " +
-        "you will always be a special part of my heart.\n\n" +
-        "I hope you always find reasons to smile, " +
-        "strength to follow your dreams, and love wherever you go.\n\n" +
-        "Thank you for being my sister and for giving me " +
-        "so many beautiful memories.\n\n" +
-        "Love you forever and ever. ❤️";
+No matter how much time passes or how much life changes,
+you will always be a special part of my heart.
 
-    document.getElementById("finalTitle").textContent =
-        "For You, " + nickname + " ❤️";
+I hope you always find reasons to smile,
+strength to follow your dreams, and love wherever you go.
 
-    document.getElementById("finalLetter").textContent =
-        personalWords || defaultMessage;
+Thank you for being my sister and for giving me
+so many beautiful memories.
 
-    showScreen(6);
+Love you forever and ever. ❤️`;
+
+  showScreen(6);
+  bloomHearts();
 }
 
-function closeSurprise() {
-    showScreen(1);
+function revealPhoto() {
+  document.getElementById("hiddenPhoto").hidden = false;
 }
+
+function bloomHearts() {
+  const symbols = ["❤️", "💗", "💖", "💕", "💘"];
+
+  for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 2 + "s";
+    heart.style.fontSize = (20 + Math.random() * 25) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8500);
+  }
+}
+
+// Bloom hearts when the page first opens.
+window.addEventListener("load", bloomHearts);
+
+// Enter key works on the password and name fields.
+["password", "nickname"].forEach(id => {
+  document.getElementById(id).addEventListener("keydown", event => {
+    if (event.key === "Enter") unlockSurprise();
+  });
+});
+
+// Song surprises follow the actual playback position.
+const song = document.getElementById("song");
+const DURATION = 180;
+const timedMessages = [
+  { time: 15, id: "m15" },
+  { time: 40, id: "m40" },
+  { time: 65, id: "m65" },
+  { time: 90, id: "m90" },
+  { time: 120, id: "m120" },
+  { time: 155, id: "m155" },
+  { time: 180, id: "m180" }
+];
+
+let revealed = new Set();
+
+song.addEventListener("timeupdate", () => {
+  const time = song.currentTime;
+
+  timedMessages.forEach(item => {
+    if (time >= item.time && !revealed.has(item.id)) {
+      revealed.add(item.id);
+      document.getElementById(item.id).hidden = false;
+      bloomHearts();
+    }
+  });
+
+  const remaining = Math.max(0, DURATION - time);
+  const mins = Math.floor(remaining / 60);
+  const secs = Math.floor(remaining % 60);
+
+  document.getElementById("musicTime").textContent =
+    String(mins).padStart(2, "0") + ":" +
+    String(secs).padStart(2, "0") + " remaining";
+
+  if (time >= DURATION) {
+    song.pause();
+    document.getElementById("songStatus").textContent =
+      "Three minutes of love, just for you. ❤️";
+  }
+});
+
+song.addEventListener("play", () => {
+  document.getElementById("songStatus").textContent =
+    "Your surprises are arriving with the music. ❤️";
+});
+
+song.addEventListener("ended", () => {
+  document.getElementById("songStatus").textContent =
+    "Thank you for listening. Love you forever! ❤️";
+});
 </script>
 
 </body>
