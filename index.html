@@ -6,11 +6,22 @@
 <title>For My Chinnari ❤️</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Georgia, "Times New Roman", serif;
-  background: linear-gradient(135deg, #fff0f5, #ffe0e9, #fff7f0);
+  background-color: #fff0f5;
+  background-image:
+    linear-gradient(#fff0f588, #ffe0e988),
+    url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #762342;
   text-align: center;
   min-height: 100vh;
@@ -36,9 +47,19 @@ section.active {
   to { opacity: 1; transform: translateY(0); }
 }
 
-h1 { font-size: clamp(30px, 6vw, 46px); margin: 20px 0; }
+h1 {
+  font-size: clamp(30px, 6vw, 46px);
+  margin: 20px 0;
+}
+
 h2 { margin: 15px 0; }
-p { font-size: 18px; line-height: 1.8; max-width: 650px; margin: 12px auto; }
+
+p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 650px;
+  margin: 12px auto;
+}
 
 button {
   background: #c2185b;
@@ -50,11 +71,15 @@ button {
   font-family: inherit;
   cursor: pointer;
   margin: 12px 5px;
+  transition: .3s;
 }
 
-button:hover { background: #8e1245; }
+button:hover {
+  background: #8e1245;
+  transform: scale(1.03);
+}
 
-input, textarea {
+input {
   width: min(90%, 400px);
   padding: 15px;
   border: 1px solid #e7a0b7;
@@ -79,21 +104,27 @@ input, textarea {
 .floating-heart {
   position: fixed;
   bottom: -60px;
-  z-index: 10;
+  z-index: 20;
   pointer-events: none;
-  animation: rise 6s linear forwards;
+  animation: rise 5s linear forwards;
 }
 
 @keyframes rise {
-  0% { transform: translateY(0) scale(.5) rotate(0); opacity: 0; }
+  0% {
+    transform: translateY(0) scale(.5);
+    opacity: 0;
+  }
   15% { opacity: 1; }
-  100% { transform: translateY(-110vh) scale(1.5) rotate(35deg); opacity: 0; }
+  100% {
+    transform: translateY(-110vh) scale(1.5) rotate(35deg);
+    opacity: 0;
+  }
 }
 
-.cards, .photos {
+/* THREE CARDS */
+.cards {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 18px;
   flex-wrap: wrap;
   margin: 25px 0;
@@ -101,7 +132,7 @@ input, textarea {
 
 .card {
   width: 145px;
-  min-height: 175px;
+  min-height: 170px;
   padding: 18px 10px;
   background: linear-gradient(145deg, #ffb6cb, #fff5f8);
   border: 2px solid #e8a0b6;
@@ -112,8 +143,10 @@ input, textarea {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: .3s;
 }
 
+.card:hover { transform: translateY(-7px); }
 .card .emoji { font-size: 42px; }
 .card strong { font-size: 27px; margin: 10px; }
 .card p { font-size: 14px; margin: 0; }
@@ -121,7 +154,7 @@ input, textarea {
 .message-box {
   display: none;
   width: min(95%, 600px);
-  background: white;
+  background: #ffffffed;
   border: 1px solid #f1b4c7;
   padding: 25px;
   border-radius: 20px;
@@ -132,16 +165,17 @@ input, textarea {
 }
 
 .photo-frame {
-  width: min(280px, 85vw);
+  width: min(320px, 88vw);
   padding: 12px;
   background: white;
   border-radius: 18px;
   box-shadow: 0 8px 25px #9d1c4420;
+  margin: 20px auto;
 }
 
 .photo-frame img {
   width: 100%;
-  height: 300px;
+  height: 350px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -162,23 +196,65 @@ input, textarea {
   max-width: 650px;
   width: 100%;
   padding: 25px;
-  background: white;
+  background: #ffffffed;
   border: 1px solid #f0b4c6;
   border-radius: 20px;
   line-height: 2;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   font-size: 18px;
+  margin: 15px auto;
 }
 
-audio { width: min(95%, 400px); margin: 15px; }
-.error { color: #b00040; font-weight: bold; }
-.signature { font-size: 24px; font-weight: bold; margin-top: 15px; }
+.hidden-photo {
+  display: none;
+  animation: photoBloom 1.2s ease both;
+}
+
+.hidden-photo.show { display: block; }
+
+@keyframes photoBloom {
+  0% {
+    opacity: 0;
+    transform: scale(.15) rotate(-12deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+audio {
+  width: min(95%, 400px);
+  margin: 15px;
+}
+
+.error {
+  color: #b00040;
+  font-weight: bold;
+}
+
+.signature {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+[hidden] { display: none !important; }
 
 @media (max-width: 480px) {
-  .card { width: 125px; min-height: 155px; }
-  .photo-frame img { height: 260px; }
+  .card {
+    width: 125px;
+    min-height: 155px;
+  }
+
+  .photo-frame img { height: 300px; }
   p { font-size: 17px; }
+  body { background-attachment: scroll; }
 }
 </style>
 </head>
@@ -189,190 +265,191 @@ audio { width: min(95%, 400px); margin: 15px; }
 <section id="screen1" class="active">
   <div class="roses">🌹🌹🌹<br>❤️💗❤️</div>
   <h1>A Little World of Love</h1>
-  <p>Every heart here is filled with love, just for you. ❤️</p>
-  <p>Someone special has prepared a surprise for you.</p>
+  <p>Made with endless love, just for you. ❤️</p>
+  <p>A little surprise from your Annya is waiting for you.</p>
   <button onclick="showScreen(2)">Open Your Surprise 💌</button>
 </section>
 
-<!-- SCREEN 2: PASSWORD AND NAME -->
+<!-- SCREEN 2: PASSWORD -->
 <section id="screen2">
   <div class="roses">💗🌹💗</div>
-  <h1>Welcome, My Dear ❤️</h1>
-  <p>Enter your password and your name to unlock your surprise.</p>
+  <h1>Welcome, My Chinnari ❤️</h1>
+  <p>Your little world of love is waiting.</p>
+  <p>Enter your password to unlock your surprise. 💌</p>
 
   <input id="password" type="password"
-         placeholder="Enter your password"
-         autocomplete="off">
-
-  <input id="nickname" type="text"
-         value="Janaki"
-         placeholder="Enter your name"
-         autocomplete="off">
+         placeholder="Enter password" autocomplete="off">
 
   <button onclick="unlockSurprise()">Unlock My Surprise ❤️</button>
   <p id="loginError" class="error" role="alert"></p>
 </section>
 
-<!-- SCREEN 3: THREE CARDS -->
+<!-- SCREEN 3: THREE LOVE CARDS -->
 <section id="screen3">
   <div class="roses">💌💕💌</div>
-  <h1 id="welcome">My Dearest Janaki ❤️</h1>
-  <p>Three little cards, three pieces of my heart. Tap each one. 💗</p>
+  <h1>My Dearest Chinnari ❤️</h1>
+  <p>Three little cards, three pieces of my heart. Tap each card. 💗</p>
 
   <div class="cards">
     <div class="card" onclick="openCard(1)">
-      <div class="emoji">💌</div><strong>1</strong>
-      <p>A little message for you</p>
+      <div class="emoji">💌</div>
+      <strong>1</strong>
+      <p>A little love</p>
     </div>
+
     <div class="card" onclick="openCard(2)">
-      <div class="emoji">💝</div><strong>2</strong>
-      <p>A little more love</p>
+      <div class="emoji">💝</div>
+      <strong>2</strong>
+      <p>Our bond</p>
     </div>
+
     <div class="card" onclick="openCard(3)">
-      <div class="emoji">❤️</div><strong>3</strong>
-      <p>From my heart</p>
+      <div class="emoji">❤️</div>
+      <strong>3</strong>
+      <p>Forever us</p>
     </div>
   </div>
 
   <div id="cardMessage" class="message-box"></div>
-  <button onclick="showScreen(4)">Our Beautiful Memories 📸</button>
+  <button onclick="showScreen(4)">Our Beautiful Memory 📸</button>
 </section>
 
-<!-- SCREEN 4: PHOTOS -->
+<!-- SCREEN 4: ONE MEMORY PHOTO -->
 <section id="screen4">
   <div class="roses">🌹❤️🌹</div>
-  <h1>Our Beautiful Memories</h1>
-  <p>Every picture holds a memory. Every memory holds love. 🫶</p>
+  <h1>Our Beautiful Memory</h1>
+  <p>One photo, a thousand feelings, and a bond that will always stay. ❤️</p>
 
-  <div class="photos">
-    <div class="photo-frame">
-      <img src="Order1 Image.jpeg" alt="First sister memory">
-      <div class="heart">❤️</div>
-      <p>My favourite memory with you</p>
-    </div>
-
-    <div class="photo-frame">
-      <img src="Order1 Image.jpeg" alt="Second sister memory">
-      <div class="heart">❤️</div>
-      <p>My forever favourite person</p>
-    </div>
-
-    <div class="photo-frame">
-      <img src="Order1 Image.jpeg" alt="Third sister memory">
-      <div class="heart">❤️</div>
-      <p>Us, today and always</p>
-    </div>
+  <div class="photo-frame">
+    <img src="Order1 Image.jpeg" alt="Our beautiful memory">
+    <div class="heart">❤️</div>
+    <p>Us, today and always. 🫶</p>
   </div>
 
+  <p>No matter how much life changes, you will always be my Chinnari.</p>
   <button onclick="showScreen(5)">A Letter From My Heart 💌</button>
 </section>
 
-<!-- SCREEN 5: SISTER BOND -->
+<!-- SCREEN 5: ANNYA AND CHELLI -->
 <section id="screen5">
   <div class="roses">💗🌹💗</div>
-  <h1>Dear <span class="nameText">Janaki</span> ❤️</h1>
+  <h1>My Chinnari, My Chelli ❤️</h1>
 
-  <div class="letter-box" id="bondLetter">
-My dearest Janaki,
+  <div class="letter-box">
+My dearest Chinnari, ❤️
+
+Being your Annya is one of the sweetest gifts of my life.
+
+No matter how much we tease each other,
+laugh together, or sometimes fight,
+you will always have a special place in my heart.
+
+I may not say it every day,
+but your happiness means so much to me.
+
+Whenever you feel sad, remember your Annya is cheering for you.
+Whenever you achieve something, know that I will be proud of you.
+
+Keep smiling, keep dreaming, and always be yourself.
 
 You are not just my sister.
-You are a beautiful part of my life
-and someone I will always care about.
+You are my little happiness, my forever Chelli. 💗
 
-We may fight, tease each other,
-and sometimes disagree,
-but my love for you will never change.
-
-I wish you endless happiness,
-beautiful memories, and all the success
-your heart dreams of.
-
-Whenever you need me,
-remember that you have a brother
-who will always wish the best for you.
-
-You will always be my Chinnari. ❤️
-
-With all my love,
-Koushik 🫶
+Love you endlessly,
+Your Annya, Koushik ❤️
   </div>
-
-  <h2>Write Your Special Words 💌</h2>
-  <textarea id="sisterWords" rows="4"
-    placeholder="Write a personal message here..."></textarea>
 
   <button onclick="showFinal()">One Last Surprise ❤️</button>
 </section>
 
-<!-- SCREEN 6: MUSIC AND FINAL SURPRISE -->
+<!-- SCREEN 6: GIFTS AND MUSIC -->
 <section id="screen6">
-  <div class="roses">🌹🌹🌹<br>🌹💗🌹</div>
-  <h1>A Song for <span class="nameText">Janaki</span> 🎵</h1>
-  <p>Play the song and let each surprise arrive with the music. ❤️</p>
+  <div class="roses">🌹🌹🌹<br>💗❤️💗</div>
+  <h1>Our Gift Surprises 🎁</h1>
+
+  <p>
+    Chinnari, this little surprise is made with all my love.
+    Play the song and discover each message as it arrives. ❤️
+  </p>
 
   <audio id="song" controls preload="metadata">
     <source src="Order1 Audio.mpeg" type="audio/mpeg">
     Your browser does not support audio.
   </audio>
 
-  <p id="musicTime">00:00 / 03:00</p>
-  <p id="songStatus">Press play to begin your surprise. 💗</p>
+  <p id="musicTime">00:00 / 04:23</p>
+  <p id="songStatus">Press play to begin your surprises. 💗</p>
 
-  <div id="timedSurprises" style="width:100%;display:grid;gap:20px;justify-items:center;">
+  <div id="timedSurprises" style="width:100%;display:grid;gap:22px;justify-items:center;">
 
     <div id="m15" class="letter-box" hidden>
-      <h2>💌 A Little Message</h2>
-      Janaki, you are one of the precious people
-      who make life more beautiful just by being there.
-      Never forget how special you are. ❤️
+      <h2>💌 A Little Message for You</h2>
+      My Chinnari, you make our family brighter
+      just by being yourself.
+
+      Never forget how loved and special you are. ❤️
     </div>
 
     <div id="m40" class="letter-box" hidden>
-      <h2>📸 A Beautiful Memory</h2>
-      <div class="photo-frame">
-        <img src="Order1 Image.jpeg" alt="A special memory">
-      </div>
-      Side by side, heart to heart. 💕
+      <h2>💗 A Bond Like No Other</h2>
+      Annya and Chelli — two hearts, one beautiful bond.
+
+      We may grow older, but you will always be
+      my little sister and a precious part of my life. 🫶
     </div>
 
     <div id="m65" class="letter-box" hidden>
-      <h2>💗 Your Sister Bond</h2>
-      May you always have each other to laugh with,
-      cry with, and share your dreams with.
-      Sisters are part of our hearts forever. ❤️
+      <h2>🌹 A Wish From Your Annya</h2>
+      May your days be full of laughter,
+      your dreams become reality,
+      and your heart always find happiness.
+
+      I will always wish the best for you. ❤️
     </div>
 
     <div id="m90" class="letter-box" hidden>
       <h2>🎈 A Hidden Surprise</h2>
-      <button onclick="revealPhoto()">Tap for your surprise ❤️</button>
-      <div id="hiddenPhoto" hidden>
+      <p>Tap below and watch your memory bloom. 💗</p>
+
+      <button onclick="revealPhoto()">💗 Tap to Reveal Your Photo 💗</button>
+
+      <div id="hiddenPhoto" class="hidden-photo">
         <div class="photo-frame">
-          <img src="Order1 Image.jpeg" alt="Hidden surprise">
+          <img src="Order1 Image.jpeg" alt="Your hidden special memory">
+          <div class="heart">❤️</div>
+          <p>Us, today and always. 🫶</p>
         </div>
-        A memory to treasure forever. 💗
+
+        <p>No matter where life takes us, our bond stays close to my heart.</p>
       </div>
     </div>
 
     <div id="m120" class="letter-box" hidden>
-      <h2>💌 From the Heart</h2>
-      May you always support each other,
-      celebrate each other's happiness,
-      and make beautiful memories together.
-      Your bond is a gift to cherish forever. 🫶
+      <h2>💝 Always Your Annya</h2>
+      Life will bring many new moments, dreams, and journeys.
+
+      Through all of them, remember that you are deeply loved.
+
+      Your Annya will always wish for your smile. ❤️
     </div>
 
     <div id="m155" class="letter-box" hidden>
-      <h2>🌹 One Last Message</h2>
-      May your life be filled with happiness,
-      beautiful memories, and endless love.
-      You are loved more than words can say. ❤️
+      <h2>💌 One Last Little Message</h2>
+      My sweet Chelli,
+
+      Thank you for being part of my life.
+      May you always be happy, confident,
+      loved, and surrounded by beautiful memories.
+
+      You will always be my Chinnari. 🌹
     </div>
 
     <div id="m180" class="letter-box" hidden>
       <div class="roses">🌹❤️🌹</div>
       <h1>Love You Forever</h1>
-      <p>Always and forever, <span class="nameText">Janaki</span>. 💗</p>
-      <p class="signature">Your Annya, Koushik 🫶</p>
+      <p>My Chinnari, my forever Chelli. 💗</p>
+      <p class="signature">Love you endlessly, Annya ❤️</p>
+      <p>Koushik 🫶</p>
     </div>
 
   </div>
@@ -380,61 +457,67 @@ Koushik 🫶
   <button onclick="showScreen(7)">Final Message ❤️</button>
 </section>
 
-<!-- SCREEN 7: CLOSE -->
+<!-- SCREEN 7: FINAL -->
 <section id="screen7">
   <div class="roses">🌹❤️🌹</div>
-  <h1>Always & Forever</h1>
-  <h2>My Beautiful Sister 💗</h2>
+  <h1>For My Chinnari</h1>
 
-  <div class="letter-box" id="finalLetter"></div>
+  <div class="letter-box">
+My sweetest Chelli, ❤️
+
+Whatever happens in life,
+you will always be my little sister.
+
+Distance, time, and changes can never erase
+the love and memories we share.
+
+Keep smiling, keep shining,
+and never forget how special you are to me.
+
+You will always have your Annya's love. 💗
+  </div>
 
   <div class="roses">❤️🌹❤️</div>
-  <p class="signature">Love You Forever — Your Annya, Koushik</p>
-  <button onclick="showScreen(1)">Close ❤️</button>
+  <h2>Love You Endlessly</h2>
+  <p class="signature">Your Annya, Koushik 🫶</p>
+  <button onclick="closeSurprise()">Close ❤️</button>
 </section>
 
 <script>
-/*
-  Demo password:
-  123456
-
-  This is a browser-side check, not secure encryption.
-  Unlimited retries: there is no attempt counter or lockout.
-*/
-
 const PASSWORD = "123456";
-let personName = "Janaki";
 
 const messages = {
   1: `My Chinnari ❤️
 
-You are one of the most precious gifts in my life.
-Your smile brings happiness, and your presence makes
-our family more beautiful.
+You are one of the sweetest blessings in my life.
+Your smile makes everything brighter.
 
-You deserve all the happiness in the world.
+Never forget how much you are loved.
 
-With love, Koushik 💗`,
+Love you endlessly,
+Your Annya 💗`,
 
-  2: `My Sweet Chinnari 💕
+  2: `My Chelli 💕
 
-We may fight, tease each other, and annoy each other,
-but you will always be so special to me.
+Annya and Chelli — a bond full of love,
+laughter, little fights, and beautiful memories.
 
-No distance or busy day can change our bond.
-You will always be my favourite sister.
+Even when we grow older,
+you will always be my little sister.
 
-Always yours, Koushik 🫶`,
+I will always wish for your happiness. ❤️`,
 
-  3: `Dear Chinnari ❤️
+  3: `My dearest Chinnari 🌹
 
-Whenever life feels difficult, remember that you are
-loved more than you know.
+Whenever life feels difficult,
+remember that you are never short of love.
 
-Keep dreaming, keep smiling, and believe in yourself.
-I will always wish for your happiness.
+Keep smiling, follow your dreams,
+and always believe in yourself.
 
-Love you endlessly, Koushik 🌹`
+Your happiness means so much to me.
+
+Love you endlessly, Annya ❤️`
 };
 
 function showScreen(number) {
@@ -448,135 +531,112 @@ function showScreen(number) {
 
 function unlockSurprise() {
   const password = document.getElementById("password").value;
-  const enteredName = document.getElementById("nickname").value.trim();
   const error = document.getElementById("loginError");
 
   if (password !== PASSWORD) {
-    error.textContent = "That password isn't correct. Please try again ❤️";
+    error.textContent = "Incorrect password. Try again, Chinnari ❤️";
     document.getElementById("password").value = "";
     document.getElementById("password").focus();
     return;
   }
 
-  if (!enteredName) {
-    error.textContent = "Please enter your name ❤️";
-    return;
-  }
-
-  // No limit on attempts. Name can be changed and entered again.
-  personName = enteredName;
   error.textContent = "";
-
-  document.getElementById("welcome").textContent =
-    "My Dearest " + personName + " ❤️";
-
-  document.querySelectorAll(".nameText").forEach(element => {
-    element.textContent = personName;
-  });
-
-  document.getElementById("bondLetter").textContent =
-    `My dearest ${personName},
-
-You are not just my sister.
-You are a beautiful part of my life
-and someone I will always care about.
-
-We may fight, tease each other,
-and sometimes disagree,
-but my love for you will never change.
-
-I wish you endless happiness,
-beautiful memories, and all the success
-your heart dreams of.
-
-Whenever you need me,
-remember that you have a brother
-who will always wish the best for you.
-
-You will always be my Chinnari. ❤️
-
-With all my love,
-Koushik 🫶`;
-
   showScreen(3);
-  bloomHearts();
+  bloomHearts(35);
 }
 
 function openCard(number) {
   const box = document.getElementById("cardMessage");
   box.style.display = "block";
-
-  // textContent safely displays the message as text.
-  box.textContent = messages[number].replaceAll("Chinnari", personName);
+  box.textContent = messages[number];
 
   box.scrollIntoView({ behavior: "smooth", block: "center" });
+  bloomHearts(10);
 }
 
 function showFinal() {
-  const personalWords = document.getElementById("sisterWords").value.trim();
+  document.querySelectorAll("#timedSurprises > div").forEach(element => {
+    element.hidden = true;
+  });
 
-  document.getElementById("finalLetter").textContent =
-    personalWords ||
-    `My dearest ${personName}, ❤️
+  document.getElementById("hiddenPhoto").classList.remove("show");
 
-No matter how much time passes or how much life changes,
-you will always be a special part of my heart.
+  revealed.clear();
 
-I hope you always find reasons to smile,
-strength to follow your dreams, and love wherever you go.
+  const song = document.getElementById("song");
+  song.pause();
 
-Thank you for being my sister and for giving me
-so many beautiful memories.
+  try {
+    song.currentTime = 0;
+  } catch (error) {}
 
-Love you forever and ever. ❤️`;
+  document.getElementById("musicTime").textContent = "00:00 / 04:23";
+  document.getElementById("songStatus").textContent =
+    "Press play to begin your surprises. 💗";
 
   showScreen(6);
-  bloomHearts();
+  bloomHearts(25);
 }
 
 function revealPhoto() {
-  document.getElementById("hiddenPhoto").hidden = false;
+  const photo = document.getElementById("hiddenPhoto");
+
+  photo.classList.remove("show");
+  void photo.offsetWidth;
+  photo.classList.add("show");
+
+  bloomHearts(35);
+
+  photo.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
 }
 
-function bloomHearts() {
-  const symbols = ["❤️", "💗", "💖", "💕", "💘"];
+function bloomHearts(count = 20) {
+  const symbols = ["❤️", "💗", "💖", "💕", "💘", "🌹"];
 
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < count; i++) {
     const heart = document.createElement("div");
     heart.className = "floating-heart";
     heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDelay = Math.random() * 2 + "s";
+    heart.style.animationDelay = Math.random() * 1.5 + "s";
     heart.style.fontSize = (20 + Math.random() * 25) + "px";
+
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8500);
+    setTimeout(() => heart.remove(), 7000);
   }
 }
 
-// Bloom hearts when the page first opens.
-window.addEventListener("load", bloomHearts);
+function closeSurprise() {
+  document.getElementById("song").pause();
+  showScreen(1);
+  bloomHearts(20);
+}
 
-// Enter key works on the password and name fields.
-["password", "nickname"].forEach(id => {
-  document.getElementById(id).addEventListener("keydown", event => {
-    if (event.key === "Enter") unlockSurprise();
-  });
+window.addEventListener("load", () => bloomHearts(30));
+
+document.getElementById("password").addEventListener("keydown", event => {
+  if (event.key === "Enter") unlockSurprise();
 });
 
-// Song surprises follow the actual playback position.
+// Song runs continuously until 4:23.
+// Surprises appear at their assigned song times.
+// Nothing pauses the music when a surprise appears.
 const song = document.getElementById("song");
-const DURATION = 180;
-const timedMessages = [
-  { time: 15, id: "m15" },
-  { time: 40, id: "m40" },
-  { time: 65, id: "m65" },
-  { time: 90, id: "m90" },
-  { time: 120, id: "m120" },
-  { time: 155, id: "m155" },
-  { time: 180, id: "m180" }
-];
+const DURATION = 263;
+const revealed = new Set();
 
-let revealed = new Set();
+const timedMessages = [
+  { time: 20, id: "m15" },
+  { time: 55, id: "m40" },
+  { time: 90, id: "m65" },
+  { time: 125, id: "m90" },
+  { time: 165, id: "m120" },
+  { time: 210, id: "m155" },
+  { time: 263, id: "m180" }
+];
 
 song.addEventListener("timeupdate", () => {
   const time = song.currentTime;
@@ -584,34 +644,31 @@ song.addEventListener("timeupdate", () => {
   timedMessages.forEach(item => {
     if (time >= item.time && !revealed.has(item.id)) {
       revealed.add(item.id);
+
       document.getElementById(item.id).hidden = false;
-      bloomHearts();
+      bloomHearts(15);
     }
   });
 
-  const remaining = Math.max(0, DURATION - time);
-  const mins = Math.floor(remaining / 60);
-  const secs = Math.floor(remaining % 60);
+  const mins = Math.floor(time / 60);
+  const secs = Math.floor(time % 60);
 
   document.getElementById("musicTime").textContent =
     String(mins).padStart(2, "0") + ":" +
-    String(secs).padStart(2, "0") + " remaining";
+    String(secs).padStart(2, "0") + " / 04:23";
 
-  if (time >= DURATION) {
-    song.pause();
-    document.getElementById("songStatus").textContent =
-      "Three minutes of love, just for you. ❤️";
-  }
+  // Do not pause at 3:00 or when the final message appears.
+  // Let the song continue until its natural ending.
 });
 
 song.addEventListener("play", () => {
   document.getElementById("songStatus").textContent =
-    "Your surprises are arriving with the music. ❤️";
+    "Your surprises are blooming with the music. ❤️";
 });
 
 song.addEventListener("ended", () => {
   document.getElementById("songStatus").textContent =
-    "Thank you for listening. Love you forever! ❤️";
+    "Love you endlessly, Annya. ❤️";
 });
 </script>
 
