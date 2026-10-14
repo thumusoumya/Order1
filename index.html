@@ -260,7 +260,10 @@ audio {
 </head>
 
 <body>
-
+<script src="crypto.js"></script>
+<audio id="song" preload="auto" loop>
+  <!-- <source src="Order1 Audio.mpeg" type="audio/mpeg"> -->
+</audio>
 <!-- SCREEN 1: BLOOMING LOVE -->
 <section id="screen1" class="active">
   <div class="roses">🌹🌹🌹<br>❤️💗❤️</div>
@@ -321,7 +324,7 @@ audio {
   <p>One photo, a thousand feelings, and a bond that will always stay. ❤️</p>
 
   <div class="photo-frame">
-    <img src="Order1 Image.jpeg" alt="Our beautiful memory">
+    <img id="image" alt="Our beautiful memory">
     <div class="heart">❤️</div>
     <p>Us, today and always. 🫶</p>
   </div>
@@ -363,7 +366,7 @@ Your Annya, Koushik ❤️
 </section>
 
 <!-- SCREEN 6: GIFTS AND MUSIC -->
-<section id="screen6">
+<!-- <section id="screen6">
   <div class="roses">🌹🌹🌹<br>💗❤️💗</div>
   <h1>Our Gift Surprises 🎁</h1>
 
@@ -455,7 +458,7 @@ Your Annya, Koushik ❤️
   </div>
 
   <button onclick="showScreen(7)">Final Message ❤️</button>
-</section>
+</section> -->
 
 <!-- SCREEN 7: FINAL -->
 <section id="screen7">
@@ -529,7 +532,7 @@ function showScreen(number) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function unlockSurprise() {
+async function unlockSurprise() {
   const password = document.getElementById("password").value;
   const error = document.getElementById("loginError");
 
@@ -540,6 +543,15 @@ function unlockSurprise() {
     return;
   }
 
+  try {
+    const babyDecrypted = await decryptFile(password, `enc/image1.bin`);
+    document.getElementById("image").src = URL.createObjectURL(new Blob([babyDecrypted]));
+    const musicData = await decryptFile(password, "enc/audio.bin");
+    document.getElementById("song").src = URL.createObjectURL(new Blob([musicData]));
+    const song = document.getElementById("song");
+    song.currentTime = 0;
+    song.play();
+  } catch (error) {}
   error.textContent = "";
   showScreen(3);
   bloomHearts(35);
@@ -555,26 +567,19 @@ function openCard(number) {
 }
 
 function showFinal() {
-  document.querySelectorAll("#timedSurprises > div").forEach(element => {
-    element.hidden = true;
-  });
+  // document.querySelectorAll("#timedSurprises > div").forEach(element => {
+    // element.hidden = true;
+  // });
 
-  document.getElementById("hiddenPhoto").classList.remove("show");
+  // document.getElementById("hiddenPhoto").classList.remove("show");
 
-  revealed.clear();
+  // revealed.clear();
 
-  const song = document.getElementById("song");
-  song.pause();
+  // document.getElementById("musicTime").textContent = "00:00 / 04:23";
+  // document.getElementById("songStatus").textContent =
+    // "Press play to begin your surprises. 💗";
 
-  try {
-    song.currentTime = 0;
-  } catch (error) {}
-
-  document.getElementById("musicTime").textContent = "00:00 / 04:23";
-  document.getElementById("songStatus").textContent =
-    "Press play to begin your surprises. 💗";
-
-  showScreen(6);
+  showScreen(7);
   bloomHearts(25);
 }
 
